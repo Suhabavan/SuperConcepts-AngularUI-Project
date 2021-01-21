@@ -1,0 +1,57 @@
+<div class="container">
+    <!--Search Bar-->
+  <mat-form-field>
+    <mat-label><b>Search </b></mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder=" Ex. Avengers">
+  </mat-form-field>
+    <!--Search Bar-->
+
+  <br>
+  <br>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
+
+    <!-- Movie Name -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="vertical-align: middle;"> Movie Name </th>
+        <td mat-cell *matCellDef="let element" style="text-align: left;"> {{element.Name}} </td>
+      </ng-container>
+
+      <!-- Director -->
+      <ng-container matColumnDef="Director">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="vertical-align: middle;"> Director Name</th>
+        <td mat-cell *matCellDef="let element" style="text-align: left;"> {{element.Director}} </td>
+      </ng-container>
+
+      <!-- Language -->
+      <ng-container matColumnDef="Language">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="vertical-align: middle;"> Language </th>
+        <td mat-cell *matCellDef="let element" style="text-align: left;"> {{element.Language}} </td>
+      </ng-container>
+
+      <!-- Rating -->
+      <ng-container matColumnDef="Rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="vertical-align: middle;"> Rating </th>
+        <td mat-cell *matCellDef="let element" style="text-align: left;"> {{element.Rating}} </td>
+      </ng-container>
+
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef style="vertical-align: middle; padding-left:17px"> Options </th>
+          <td mat-cell *matCellDef="let row" style="text-align: left;">
+          <button mat-icon-button (click)="onEdit(row)">
+              <mat-icon>launch</mat-icon>
+          </button>
+          <button mat-icon-button color='warn' (click)="onDelete(row._id)">
+              <mat-icon>delete_outline</mat-icon>
+          </button>
+       </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <button class="bt-2" mat-raised-button color="primary" (click)="onAdd()">Add Movie</button>
+</div>

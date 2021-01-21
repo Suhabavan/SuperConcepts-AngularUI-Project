@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-between">
+  <h4>Add new Movie</h4>
+  <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div style="overflow: auto; height: 450px;">
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+      <div class="mt-4 input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Movie Name</span>
+          </div>
+          <input required minlength="5" type=text
+          class="form-control"
+          name="Name"
+          #Name ="ngModel"
+          [(ngModel)]="service.movieData.Name">
+      </div>
+      <div class="text-left text-danger"
+      *ngIf="Name.invalid && Name.touched">
+          Please enter Movie Name.
+      </div>
+
+      <div class="mt-4 input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Director Name</span>
+          </div>
+          <input required minlength="5" type=text
+          class="form-control"
+          name="Director"
+          #Director ="ngModel"
+          [(ngModel)]="service.movieData.Director">
+      </div>
+      <div class="text-left text-danger"
+      *ngIf="Director.invalid && Director.touched">
+          Please enter Director Name.
+      </div>
+
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Language</span>
+        </div>
+        <input required minlength="5" type=text
+        class="form-control"
+        name="Language"
+        #Language ="ngModel"
+        [(ngModel)]="service.movieData.Language">
+      </div>
+      <div class="text-left text-danger"
+      *ngIf="Language.invalid && Language.touched">
+          Please enter Language.
+      </div>
+
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Rating</span>
+      </div>
+      <input required type="number"
+      class="form-control"
+      name="Rating"
+      #Rating ="ngModel"
+      [(ngModel)]="service.movieData.Rating">
+    </div>
+    <div class="text-left text-danger"
+    *ngIf="Rating.invalid && Rating.touched">
+        Please enter Rating.
+    </div>
+
+    <button class="mt-4" mat-raised-button color="primary" type="submit"
+    [disabled]="form.invalid">Add Movie</button>
+
+  </form>
+</div>
